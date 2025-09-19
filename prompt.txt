@@ -1,0 +1,62 @@
+Loyiga TTJ
+Dashboard => 
+#umumit_talabalar_soni
+#yotoqxona_xonalari
+#yotoqxona_ichidagi_talabalar_soni
+#tashqaridagi_talabalar_soni
+
+
+1.2
+ • so’ngi faolliklar:
+ vaqti
+ • familiya ism talaba
+
+
+ • kirdi
+ •  chiqdi 
+ • kech kirdi
+ •  umuman kirmadi
+
+ • xonasi
+
+
+5ta talabaning shartnomasi 7 kun ichida tugaydi
+3ta talabani bugun kechib kirdi
+
+
+
+Bino va xonalar:
+
+POST
+Bino qushish
+#bino_nomi
+#bino_qavatlari_soni
+#xonalar_soni
+#umumiy_sigim
+
+Xona qushish
+#Binoni_tanlash
+#xona_raqami
+#qavat_tanlash
+#sigim
+
+
+GET
+Binolar crud
+Xonalar
+xona_raqami
+bino
+qavat
+sigim
+bandlik
+xolat
+to’la
+qisman band
+bo’sh
+
+
+
+TALABALR
+
+POST
+Talaba_id raqami
