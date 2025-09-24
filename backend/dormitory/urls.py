@@ -3,10 +3,14 @@ from .views import (
     BuildingListCreate, BuildingDetail,
     RoomListCreate, RoomDetail,
     StudentListCreate, StudentDetail,
-    ActivityListCreate, ActivityDetail
+    ActivityListCreate, ActivityDetail,
+    DashboardView,
+    BinoXonalarView,
 )
 
 urlpatterns = [
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('bino-xonalar/', BinoXonalarView.as_view(), name='bino-xonalar-page'),
     path('buildings/', BuildingListCreate.as_view(), name='building-list-create'),
     path('buildings/<int:pk>/', BuildingDetail.as_view(), name='building-detail'),
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Building, Room, Student, Activity
+from .models import Building, Room, Student, Activity, Role, UserProfile
 
 @admin.register(Building)
 class BuildingAdmin(admin.ModelAdmin):
@@ -23,3 +23,17 @@ class ActivityAdmin(admin.ModelAdmin):
 	list_display = ('student', 'action', 'time')
 	list_filter = ('action', 'time')
 	search_fields = ('student__last_name', 'student__first_name')
+
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+	list_display = ('name', 'code')
+	search_fields = ('name', 'code')
+	filter_horizontal = ('permissions',)
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+	list_display = ('user',)
+	search_fields = ('user__username', 'user__email')
+	filter_horizontal = ('roles',)
