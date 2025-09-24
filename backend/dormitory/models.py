@@ -4,6 +4,8 @@ from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 from django.contrib.auth.models import Permission
 
+from backend.student.models import Student
+
 
 class Building(models.Model):  # Bino modeli: yotoqxona binosi haqida ma'lumot
  name = models.CharField(max_length=100)  # Bino nomi
@@ -30,23 +32,7 @@ class Room(models.Model):  # Xona modeli: har bir xonaning parametrlari
  def __str__(self):
   return f"{self.building.name} - {self.number}"
 
-class Student(models.Model):  # Talaba modeli: yotoqxonadagi talabalar haqida
- student_id = models.CharField(max_length=20, unique=True)  # Talaba ID raqami
- picture = models.ImageField(upload_to='student_pics/', null=True, blank=True)  # Talaba rasmi
- first_name = models.CharField(max_length=50)  # Ismi
- last_name = models.CharField(max_length=50)   # Familiyasi
- third_name = models.CharField(max_length=50, null=True, blank=True)  # Otasining ismi
- birth_date = models.DateField(null=True, blank=True)  # Tug‘ilgan sanasi
- phone_number = models.CharField(max_length=15, null=True, blank=True)  # Telefon raqami
- parent_contact = models.CharField(max_length=15, null=True, blank=True)  # Ota-ona yoki vasiy telefon raqami
- address = models.TextField(null=True, blank=True)  # Manzil
- room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True, blank=True, related_name='students')  # Qaysi xonada joylashgan
- contact_start = models.DateField(null=True, blank=True)  # Shartnoma boshlanish sanasi
- contract_end = models.DateField(null=True, blank=True)  # Shartnoma tugash sanasi
- working_status = models.BooleanField(default=True)  # Faol yoki faol emasligi
 
- def __str__(self):
-  return f"{self.last_name} {self.first_name}"
 
 class Activity(models.Model):  # Faolliklar modeli: talabalar harakatlari logi
  student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='activities')  # Qaysi talaba
@@ -70,15 +56,7 @@ class TimeOpenEndClosed(models.Model):  # Yotoqxonani ochish va yopish vaqtlari
  def __str__(self):
   return f"Open: {self.open_time}, Close: {self.close_time}"
 
-class StudentPaymentStory(models.Model):  # To'lovlar tarixi modeli: talabalar to'lovlari haqida
- student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='payments')  # Qaysi talaba
- amount = models.DecimalField(max_digits=10, decimal_places=2)  # To'lov summasi
- payment_receipt = models.FileField(upload_to='payment_receipts/', null=True, blank=True)  # To'lov kvitansiyasi
- date = models.DateField()  # To'lov sanasi
- notes = models.TextField(null=True, blank=True)  # Qo'shimcha eslatmalar
 
- def __str__(self):
-  return f"{self.student} - {self.amount} on {self.date}"
 
 
 
