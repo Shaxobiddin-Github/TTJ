@@ -3,7 +3,8 @@ from django.conf import settings
 from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 from django.contrib.auth.models import Permission
-from student.models import Student
+
+from backend.student.models import Student
 
 
 class Building(models.Model):  # Bino modeli: yotoqxona binosi haqida ma'lumot
